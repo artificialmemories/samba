@@ -38,7 +38,9 @@
     ftp disable list=no
     # edit synoacl=yes
     writeable=yes
-    guest ok=yes
+    guest ok=no
+    ead only=no
+    force group=family
     path=/shares/testshare
     skip smb perm=yes
     comment=""
