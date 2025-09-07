@@ -1,10 +1,11 @@
 [global]
     server role = standalone server
     log file = /dev/stdout
-    log level 5
+    log level 8
     printcap name=cups
     winbind enum groups=yes
-    min protocol=SMB2
+    server signing=mandatory 
+    min protocol=SMB3
     security=user
     local master=no
     realm=*
