@@ -29,7 +29,7 @@ INITALIZED="/.initialized"
 if [ ! -f "$INITALIZED" ]; then
   echo ">> CONTAINER: starting initialisation"
 
-  cp /container/config/samba/smb.conf /etc/samba/smb.conf
+  # cp /container/config/samba/smb.conf /etc/samba/smb.conf
   cp /container/config/avahi/samba.service /etc/avahi/services/samba.service
 
   ##
