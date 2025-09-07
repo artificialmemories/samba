@@ -7,10 +7,16 @@ services:
     restart: always
     # note that this network_mode makes it super easy (especially for zeroconf) but is not as safe as exposing ports directly
     # more about that here: https://book.hacktricks.wiki/en/linux-hardening/privilege-escalation/docker-security/docker-breakout-privilege-escalation/index.html#hostnetwork
-    network_mode: host
+    # network_mode: host
     # uncomment to solve bug: https://github.com/ServerContainers/samba/issues/50 - wsdd2 only - not needed for samba
-    cap_add:
-     - CAP_NET_ADMIN
+    # cap_add:
+    #  - CAP_NET_ADMIN
+    ports:
+      - 445:445
+      - 139:139
+      - 3702:3702
+      - 5353:5353
+      - 5355:5355
     environment:
       # uncomment to enable fail fast (currently only fails fast if there are conflicts/errors during user/group creation)
       #FAIL_FAST: 1
