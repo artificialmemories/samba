@@ -8,6 +8,14 @@
     security=user
     local master=no
     realm=*
+
+    obey pam restrictions = yes
+    printcap name = /dev/null
+    load printers = no
+    dns proxy = no
+    wide links = yes
+    follow symlinks = yes
+
     passdb backend=smbpasswd
     printing=cups
     max protocol=SMB3
@@ -19,14 +27,14 @@
     recycle bin admin only=no
     ftp disable modify=no
     ftp disable download=no
-    write list=nobody,nobody
+    write list=alice
     browseable=yes
     read list=nobody,nobody
     hide unreadable=no
     win share=yes
     enable recycle bin=no
     invalid users=nobody,nobody
-    valid users=nobody,nobody
+    valid users=alice
     ftp disable list=no
     # edit synoacl=yes
     writeable=yes
