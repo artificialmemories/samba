@@ -12,11 +12,11 @@ services:
     # cap_add:
     #  - CAP_NET_ADMIN
     ports:
-      - 445:445
-      - 139:139
-      - 3702:3702
-      - 5353:5353
-      - 5355:5355
+      - "445"
+      - "139"
+      - "3702"
+      - "5353"
+      - "5355"
     environment:
       # uncomment to enable fail fast (currently only fails fast if there are conflicts/errors during user/group creation)
       #FAIL_FAST: 1
