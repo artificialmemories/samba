@@ -24,6 +24,17 @@
     load printers=yes
     workgroup=WORKGROUP
 
+    ea support = yes
+    fruit:resource = file
+    fruit:locking = netatalk
+
+    fruit:aapl = yes
+    vfs objects = catia fruit streams_xattr
+    fruit:nfs_aces = no
+    fruit:zero_file_id = yes
+    fruit:metadata = stream
+    fruit:encoding = native 
+
 [Storage]
     recycle bin admin only=no
     ftp disable modify=no
