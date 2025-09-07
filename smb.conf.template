@@ -4,11 +4,22 @@
     log level 8
     printcap name=cups
     winbind enum groups=yes
-    server signing=mandatory 
+    # server signing=mandatory 
     min protocol=SMB3
     security=user
     local master=no
     realm=*
+
+    server multi channel support=yes
+    # access based share enum=no # Default = no
+    aio read size=1
+    server signing=force
+    # msdfs root=no # Default = no
+    # smb2 leases=yes # Default = yes
+    # posix locking=no # Default = yes
+    # kernel share modes=no # Default = no
+    disable shadow copy=no
+    durable handles=yes # Default = yes
 
     obey pam restrictions = yes
     printcap name = /dev/null
