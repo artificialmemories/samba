@@ -23,6 +23,12 @@ services:
       MODEL: 'TimeCapsule'
       AVAHI_NAME: StorageServer
       SAMBA_CONF_LOG_LEVEL: 3
+
+      GROUP_family: 1500
+
+      ACCOUNT_alice: alipass
+      UID_alice: 1000
+      GROUPS_alice: family
       # uncomment to disable optional services
       #WSDD2_DISABLE: 1
       #AVAHI_DISABLE: 1
