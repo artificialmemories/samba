@@ -48,64 +48,6 @@ if [ ! -f "$INITALIZED" ]; then
     echo ">> SPECIAL MODE: you can use env variables to have your custom global config - they will be added after this deletion job"
   fi
 
-
-
-  ##
-  # MAIN CONFIGURATION
-  ##
-  if [ ! -z ${SAMBA_CONF_SERVER_ROLE+x} ]
-  then
-    echo ">> SAMBA CONFIG: \$SAMBA_CONF_SERVER_ROLE set, using '$SAMBA_CONF_SERVER_ROLE'"
-    sed -i 's$standalone server$'"$SAMBA_CONF_SERVER_ROLE"'$g' /etc/samba/smb.conf
-  fi
-
-  if [ -z ${SAMBA_CONF_LOG_LEVEL+x} ]
-  then
-    SAMBA_CONF_LOG_LEVEL="1"
-    echo ">> SAMBA CONFIG: no \$SAMBA_CONF_LOG_LEVEL set, using '$SAMBA_CONF_LOG_LEVEL'"
-  fi
-  echo '   log level = '"$SAMBA_CONF_LOG_LEVEL" >> /etc/samba/smb.conf
-
-  if [ -z ${SAMBA_CONF_WORKGROUP+x} ]
-  then
-    SAMBA_CONF_WORKGROUP="WORKGROUP"
-    echo ">> SAMBA CONFIG: no \$SAMBA_CONF_WORKGROUP set, using '$SAMBA_CONF_WORKGROUP'"
-  fi
-  echo '   workgroup = '"$SAMBA_CONF_WORKGROUP" >> /etc/samba/smb.conf
-
-  if [ -z ${SAMBA_CONF_SERVER_STRING+x} ]
-  then
-    SAMBA_CONF_SERVER_STRING="Samba Server"
-    echo ">> SAMBA CONFIG: no \$SAMBA_CONF_SERVER_STRING set, using '$SAMBA_CONF_SERVER_STRING'"
-  fi
-  echo '   server string = '"$SAMBA_CONF_SERVER_STRING" >> /etc/samba/smb.conf
-
-  if [ -z ${SAMBA_CONF_MAP_TO_GUEST+x} ]
-  then
-    SAMBA_CONF_MAP_TO_GUEST="Bad User"
-    echo ">> SAMBA CONFIG: no \$SAMBA_CONF_MAP_TO_GUEST set, using '$SAMBA_CONF_MAP_TO_GUEST'"
-  fi
-  echo '   map to guest = '"$SAMBA_CONF_MAP_TO_GUEST" >> /etc/samba/smb.conf
-
-  if [ ! -z ${NETBIOS_DISABLE+x} ]
-  then
-    echo ">> SAMBA CONFIG: \$NETBIOS_DISABLE is set - disabling nmbd"
-    echo '   disable netbios = yes' >> /etc/samba/smb.conf
-  fi
-
-  ##
-  # GLOBAL CONFIGURATION
-  ##
-  echo "$SAMBA_GLOBAL_STANZA" | sed 's/;/\n   /g' | grep . >> /etc/samba/smb.conf
-
-  for I_CONF in $(env | grep '^SAMBA_GLOBAL_CONFIG_')
-  do
-    CONF_KEY_VALUE=$(echo "$I_CONF" | sed 's/^SAMBA_GLOBAL_CONFIG_//g' | sed 's/=.*//g' | sed 's/_SPACE_/ /g' | sed 's/_COLON_/:/g')
-    CONF_CONF_VALUE=$(echo "$I_CONF" | sed 's/^[^=]*=//g')
-    echo ">> global config - adding: '$CONF_KEY_VALUE' = '$CONF_CONF_VALUE' to /etc/samba/smb.conf"
-    echo '   '"$CONF_KEY_VALUE"' = '"$CONF_CONF_VALUE"  >> /etc/samba/smb.conf
-  done
-
   # FAIL FAST START
   [ ! -z ${FAIL_FAST+x} ] && set -e
 
@@ -173,8 +115,6 @@ if [ ! -f "$INITALIZED" ]; then
   [ ! -z ${FAIL_FAST+x} ] && set +e
   # FAIL FAST END
 
-
-  echo '' >> /etc/samba/smb.conf
 
   ##
   # AVAHI basic / general configuration

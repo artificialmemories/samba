@@ -1,9 +1,9 @@
 [global]
     server role = standalone server
     log file = /dev/stdout
+    log level 5
 	printcap name=cups
 	winbind enum groups=yes
-	include=/var/tmp/nginx/smb.netbios.aliases.conf
 	min protocol=SMB2
 	security=user
 	local master=no
