@@ -46,12 +46,13 @@
     read list=nobody,nobody
     hide unreadable=no
     win share=yes
-    enable recycle bin=no
+    # enable recycle bin=no
     invalid users=nobody,nobody
     valid users=alice
     # ftp disable list=no # unknown parameter
     # edit synoacl=yes
-    writeable=yes
+    writeable = yes
+    read only = no
     guest ok=no
     # ead only=no # unknown parameter
     force group=family
