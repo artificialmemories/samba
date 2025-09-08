@@ -18,7 +18,7 @@
     printcap name=cups
     winbind enum groups=yes
     server signing=mandatory 
-    min protocol=SMB2_2
+    min protocol=SMB2_02
     security=user
     local master=no
     realm=*
