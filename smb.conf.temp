@@ -28,13 +28,13 @@
 
 
    server multi channel support=yes
-   access based share enum=no
+   # access based share enum=no
    min protocol=SMB2
-   aio read size=1
-   smb2 leases=yes
-   kernel share modes=no
-   disable shadow copy=no
-   durable handles=yes
+   # aio read size=1
+   # smb2 leases=yes
+   # kernel share modes=no
+   # disable shadow copy=no
+   # durable handles=yes
 
 
 
