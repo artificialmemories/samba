@@ -18,13 +18,13 @@
     printcap name=cups
     winbind enum groups=yes
     server signing=mandatory 
-    min protocol=SMB2
     security=user
     local master=no
     realm=*
 
     server multi channel support=yes
 	access based share enum=no
+    min protocol=SMB2
 	aio read size=1
     smb2 leases=yes
     kernel share modes=no
