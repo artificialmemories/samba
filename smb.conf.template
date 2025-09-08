@@ -18,10 +18,19 @@
     printcap name=cups
     winbind enum groups=yes
     server signing=mandatory 
-    min protocol=SMB2_02
+    min protocol=SMB2
     security=user
     local master=no
     realm=*
+
+    server multi channel support=yes
+	access based share enum=no
+	aio read size=1
+    smb2 leases=yes
+    kernel share modes=no
+	disable shadow copy=no
+	durable handles=yes
+
     ea support = yes
     vfs objects = fruit streams_xattr  
     fruit:metadata = stream
@@ -43,7 +52,7 @@
     # ftp disable download=no # unknown parameter
     write list=alice
     browseable=yes
-    read list=nobody,nobody
+    read list=alice
     hide unreadable=no
     win share=yes
     # enable recycle bin=no
