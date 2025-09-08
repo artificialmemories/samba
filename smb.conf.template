@@ -1,55 +1,46 @@
 [global]
     server role = standalone server
     log file = /dev/stdout
-    log level 8
+    log level 10
+    dns proxy = no 
+
+    # password stuff
+    passdb backend = smbpasswd
+
+    obey pam restrictions = yes
+    security = user
+    printcap name = /dev/null
+    load printers = no
+    wide links = yes
+    follow symlinks = yes
+    unix extensions = no
+    acl allow execute always = yes
     printcap name=cups
     winbind enum groups=yes
     server signing=mandatory 
-    min protocol=SMB2
+    min protocol=SMB2_2
     security=user
     local master=no
     realm=*
-
-    server multi channel support=yes
-    # access based share enum=no # Default = no
-    aio read size=1
-    # server signing=force
-    # msdfs root=no # Default = no
-    # smb2 leases=yes # Default = yes
-    # posix locking=no # Default = yes
-    # kernel share modes=no # Default = no
-    disable shadow copy=no
-    durable handles=yes # Default = yes
-
-    obey pam restrictions = yes
-    printcap name = /dev/null
-    load printers = no
-    dns proxy = no
-    wide links = yes
-    follow symlinks = yes
-
-    passdb backend=smbpasswd
-    printing=cups
-    max protocol=SMB3
-    winbind enum users=yes
-    load printers=yes
-    workgroup=WORKGROUP
-
     ea support = yes
-    fruit:resource = file
-    fruit:locking = netatalk
-
-    fruit:aapl = yes
-    vfs objects = catia fruit streams_xattr
-    fruit:nfs_aces = no
-    fruit:zero_file_id = yes
+    vfs objects = fruit streams_xattr  
     fruit:metadata = stream
-    fruit:encoding = native 
+    fruit:model = MacSamba
+    fruit:veto_appledouble = no
+    fruit:nfs_aces = no
+    fruit:wipe_intentionally_left_blank_rfork = yes 
+    fruit:delete_empty_adfiles = yes 
+    fruit:posix_rename = yes 
+
+    # fix filenames with special chars (should be default)
+    mangled names = no
+    dos charset = CP850
+    unix charset = UTF-8
 
 [Storage]
-    recycle bin admin only=no
-    ftp disable modify=no
-    ftp disable download=no
+    # recycle bin admin only=no # unknown parameter
+    # ftp disable modify=no # unknown parameter
+    # ftp disable download=no # unknown parameter
     write list=alice
     browseable=yes
     read list=nobody,nobody
@@ -58,12 +49,12 @@
     enable recycle bin=no
     invalid users=nobody,nobody
     valid users=alice
-    ftp disable list=no
+    # ftp disable list=no # unknown parameter
     # edit synoacl=yes
     writeable=yes
     guest ok=no
-    ead only=no
+    # ead only=no # unknown parameter
     force group=family
     path=/shares/testshare
-    skip smb perm=yes
+    # skip smb perm=yes # unknown parameter
     comment=""
